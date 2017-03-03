@@ -1,0 +1,9 @@
+{
+  "name": "esri-utils",
+  "version": "0.0.1",
+  "description": "\"Utility functions that may be useful when developing ArcGIS web apps\"",
+  "main": "index.js",
+  "repository": "https://github.com/tomwayson/esri-utils.git",
+  "author": "Tom Wayson <tom@tomwayson.com>",
+  "license": "Apache-2.0"
+}
