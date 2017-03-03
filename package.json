@@ -1,9 +1,18 @@
 {
   "name": "esri-utils",
   "version": "0.0.1",
+  "scripts": {
+    "build": "rollup -c profiles/dev.js"
+  },
   "description": "\"Utility functions that may be useful when developing ArcGIS web apps\"",
-  "main": "index.js",
+  "main": "src/esri-utils.js",
   "repository": "https://github.com/tomwayson/esri-utils.git",
   "author": "Tom Wayson <tom@tomwayson.com>",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {
+    "rollup": "^0.41.4",
+    "rollup-plugin-buble": "^0.15.0",
+    "semistandard": "^9.2.1"
+  }
 }
