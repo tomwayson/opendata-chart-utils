@@ -1,20 +1,18 @@
-// import isNumericType from '../../src/field/is-numeric-type';
+QUnit.module('is numeric field type');
 
-describe('isNumericType', function () {
-  it('returns true for numeric types', function () {
-    const types = ['esriFieldTypeSmallInteger', 'esriFieldTypeInteger', 'esriFieldTypeSingle', 'esriFieldTypeDouble'];
-    types.forEach(function (type) {
-      expect(esriUtils.field.isNumericType(type)).toBe(true);
-    });
+QUnit.test('it returns true for numeric types', function (assert) {
+  var types = ['esriFieldTypeSmallInteger', 'esriFieldTypeInteger', 'esriFieldTypeSingle', 'esriFieldTypeDouble'];
+  types.forEach(function (type) {
+    assert.ok(esriUtils.field.isNumericType(type), type + ' should be numeric');
   });
+});
 
-  it('returns false for non-numeric types', function () {
-    const types = ['esriFieldTypeString',
-      'esriFieldTypeDate',
-      'esriFieldTypeOID', 'esriFieldTypeGlobalID',
-      'esriFieldTypeGeometry', 'esriFieldTypeBlob', 'esriFieldTypeRaster', 'esriFieldTypeGUID', 'esriFieldTypeXML'];
-    types.forEach(function (type) {
-      expect(esriUtils.field.isNumericType(type)).toBe(false);
-    });
+QUnit.test('it returns fals for non-numeric types', function (assert) {
+  var types = ['esriFieldTypeString',
+    'esriFieldTypeDate',
+    'esriFieldTypeOID', 'esriFieldTypeGlobalID',
+    'esriFieldTypeGeometry', 'esriFieldTypeBlob', 'esriFieldTypeRaster', 'esriFieldTypeGUID', 'esriFieldTypeXML'];
+  types.forEach(function (type) {
+    assert.notOk(esriUtils.field.isNumericType(type), type + ' should not be numeric');
   });
 });

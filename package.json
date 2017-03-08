@@ -14,17 +14,20 @@
   "dependencies": {},
   "devDependencies": {
     "concurrently": "^3.4.0",
-    "jasmine-core": "^2.5.2",
     "karma": "^1.5.0",
     "karma-chrome-launcher": "^2.0.0",
-    "karma-jasmine": "^1.1.0",
+    "karma-qunit": "^1.2.1",
     "karma-rollup-plugin": "^0.2.4",
+    "qunitjs": "^2.1.1",
     "rollup": "^0.41.4",
     "rollup-plugin-buble": "^0.15.0",
     "semistandard": "^9.2.1",
     "watch": "^1.0.2"
   },
   "semistandard": {
-    "globals": ["describe", "it", "expect", "esriUtils"]
+    "globals": [
+      "QUnit",
+      "esriUtils"
+    ]
   }
 }
