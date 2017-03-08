@@ -1,6 +1,6 @@
 import config from './base';
 
-config.dest = 'dist/esri-utils.js';
-config.sourceMap = 'dist/esri-utils.js.map';
+config.dest = 'dist/arcgis-chart-utils.js';
+config.sourceMap = 'dist/arcgis-chart-utils.js.map';
 
 export default config;

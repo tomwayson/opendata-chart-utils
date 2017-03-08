@@ -1,7 +1,7 @@
 {
-  "name": "esri-utils",
+  "name": "arcgis-chart-utils",
   "description": "\"Utility functions that may be useful when developing ArcGIS web apps\"",
-  "main": "dist/esri-utils.js",
+  "main": "dist/arcgis-chart-utils.js",
   "authors": [
     "Tom Wayson <tom@tomwayson.com>"
   ],
@@ -12,12 +12,15 @@
     "JavaScript",
     "utils"
   ],
-  "homepage": "https://github.com/tomwayson/esri-utils",
+  "homepage": "https://github.com/tomwayson/arcgis-chart-utils",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "moment": "^2.17.1"
+  }
 }
