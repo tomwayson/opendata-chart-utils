@@ -1,11 +1,10 @@
-import isNumericType from '../../src/field/is-numeric-type';
+// import isNumericType from '../../src/field/is-numeric-type';
 
-/* global describe, it, expect */
 describe('isNumericType', function () {
   it('returns true for numeric types', function () {
     const types = ['esriFieldTypeSmallInteger', 'esriFieldTypeInteger', 'esriFieldTypeSingle', 'esriFieldTypeDouble'];
     types.forEach(function (type) {
-      expect(isNumericType(type)).toBe(true);
+      expect(esriUtils.field.isNumericType(type)).toBe(true);
     });
   });
 
@@ -15,7 +14,7 @@ describe('isNumericType', function () {
       'esriFieldTypeOID', 'esriFieldTypeGlobalID',
       'esriFieldTypeGeometry', 'esriFieldTypeBlob', 'esriFieldTypeRaster', 'esriFieldTypeGUID', 'esriFieldTypeXML'];
     types.forEach(function (type) {
-      expect(isNumericType(type)).toBe(false);
+      expect(esriUtils.field.isNumericType(type)).toBe(false);
     });
   });
 });

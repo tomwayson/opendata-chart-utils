@@ -1,4 +1,4 @@
-var buble = require('rollup-plugin-buble');
+// var buble = require('rollup-plugin-buble');
 
 // Karma configuration
 // Generated on Thu Mar 02 2017 21:16:49 GMT-0800 (PST)
@@ -16,7 +16,8 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: 'src/**/*.js', included: false, served: false },
+      // { pattern: 'src/**/*.js', included: false, served: false },
+      'dist/esri-utils.js',
       'test/**/*.js'
     ],
 
@@ -26,21 +27,21 @@ module.exports = function (config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      'test/**/*.js': ['rollup']
-    },
+    // preprocessors: {
+    //   'test/**/*.js': ['rollup']
+    // },
 
-    rollupPreprocessor: {
-      // rollup settings. See Rollup documentation
-      // moduleName: 'esriUtils',
-      // format: 'umd',
-      plugins: [
-        buble() // ES2015 compiler by the same author as Rollup
-      ],
-      // will help to prevent conflicts between different tests entries
-      format: 'iife',
-      sourceMap: 'inline'
-    },
+    // rollupPreprocessor: {
+    //   // rollup settings. See Rollup documentation
+    //   // moduleName: 'esriUtils',
+    //   // format: 'umd',
+    //   plugins: [
+    //     buble() // ES2015 compiler by the same author as Rollup
+    //   ],
+    //   // will help to prevent conflicts between different tests entries
+    //   format: 'iife',
+    //   sourceMap: 'inline'
+    // },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
