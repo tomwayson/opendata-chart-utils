@@ -16,6 +16,7 @@
     "concurrently": "^3.4.0",
     "karma": "^1.5.0",
     "karma-chrome-launcher": "^2.0.0",
+    "karma-mocha-reporter": "^2.2.2",
     "karma-qunit": "^1.2.1",
     "karma-rollup-plugin": "^0.2.4",
     "qunitjs": "^2.1.1",
