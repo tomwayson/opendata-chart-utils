@@ -1,5 +1,5 @@
 {
-  "name": "esri-utils",
+  "name": "arcgis-chart-utils",
   "version": "0.0.1",
   "scripts": {
     "build": "rollup -c profiles/dev.js",
@@ -7,8 +7,8 @@
     "start": "npm run build && concurrently \"watch 'npm run build' src\" \"karma start\""
   },
   "description": "\"Utility functions that may be useful when developing ArcGIS web apps\"",
-  "main": "src/esri-utils.js",
-  "repository": "https://github.com/tomwayson/esri-utils.git",
+  "main": "src/arcgis-chart-utils.js",
+  "repository": "https://github.com/tomwayson/arcgis-chart-utils.git",
   "author": "Tom Wayson <tom@tomwayson.com>",
   "license": "Apache-2.0",
   "dependencies": {},
@@ -27,7 +27,7 @@
   "semistandard": {
     "globals": [
       "QUnit",
-      "esriUtils"
+      "arcgisChartUtils"
     ]
   }
 }

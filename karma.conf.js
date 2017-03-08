@@ -16,7 +16,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       { pattern: 'bower_components/moment/min/moment.min.js', watched: false },
-      'dist/esri-utils.js',
+      'dist/arcgis-chart-utils.js',
       'test/**/*.js'
     ],
 

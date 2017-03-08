@@ -7,8 +7,8 @@ const copyright = `/**
 */`;
 
 export default {
-  entry: 'src/esri-utils.js',
-  moduleName: 'esriUtils',
+  entry: 'src/index.js',
+  moduleName: 'arcgisChartUtils',
   format: 'umd',
   plugins: [buble()],
   banner: copyright
