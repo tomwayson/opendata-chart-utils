@@ -4,7 +4,7 @@ QUnit.module('shouldChartAttribute');
 var startDate = new Date(1990, 11, 25);
 
 QUnit.test('shouldChartAttribute returns false if no stats', function (assert) {
-  let result = arcgisChartUtils.field.shouldChartAttribute('esriFieldTypeString', undefined);
+  let result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeString', undefined);
   assert.notOk(result);
   // TODO: test other field types here?
 });
@@ -13,7 +13,7 @@ QUnit.test('shouldChartAttribute returns false if duration <= 0', function (asse
   const stats = {
     duration: 0
   };
-  let result = arcgisChartUtils.field.shouldChartAttribute('esriFieldTypeString', stats);
+  let result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeString', stats);
   assert.notOk(result);
   // TODO: test other field types/counts here?
 });
@@ -23,7 +23,7 @@ QUnit.test('shouldChartAttribute returns false if count === 0', function (assert
     count: 0,
     duration: 543
   };
-  let result = arcgisChartUtils.field.shouldChartAttribute('esriFieldTypeString', stats);
+  let result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeString', stats);
   assert.notOk(result);
   // TODO: test other field types/durations here?
 });
@@ -38,7 +38,7 @@ QUnit.test('shouldChartAttribute returns false for date/time fields that have su
       supportsSqlExpression: false
     }
   };
-  let result = arcgisChartUtils.field.shouldChartAttribute('esriFieldTypeDate', stats, options);
+  let result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeDate', stats, options);
   assert.notOk(result);
 });
 
@@ -54,7 +54,7 @@ QUnit.test('shouldChartAttribute returns true for date/time fields that have sup
       supportsSqlExpression: true
     }
   };
-  let result = arcgisChartUtils.field.shouldChartAttribute('esriFieldTypeDate', stats, options);
+  let result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeDate', stats, options);
   assert.ok(result);
 });
 
@@ -70,7 +70,7 @@ QUnit.test(`shouldChartAttribute returns true for date/time fields that do not h
     maxRecordCount: 6000,
     recordCount: 5000
   };
-  let result = arcgisChartUtils.field.shouldChartAttribute('esriFieldTypeDate', stats, options);
+  let result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeDate', stats, options);
   assert.ok(result);
 });
 
@@ -85,7 +85,7 @@ QUnit.test(`shouldChartAttribute returns false when recordCount exceeds 10000`, 
     maxRecordCount: 50000,
     recordCount: 10001
   };
-  let result = arcgisChartUtils.field.shouldChartAttribute('esriFieldTypeDate', stats, options);
+  let result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeDate', stats, options);
   assert.notOk(result);
 });
 
@@ -100,7 +100,7 @@ QUnit.test(`shouldChartAttribute returns false when recordCount exceeds maxRecor
     maxRecordCount: 1000,
     recordCount: 5000
   };
-  let result = arcgisChartUtils.field.shouldChartAttribute('esriFieldTypeDate', stats, options);
+  let result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeDate', stats, options);
   assert.notOk(result);
 });
 
@@ -109,7 +109,7 @@ QUnit.test('shouldChartAttribute returns true for string field w/ duration > 0 a
     count: 20,
     duration: 543
   };
-  let result = arcgisChartUtils.field.shouldChartAttribute('esriFieldTypeString', stats);
+  let result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeString', stats);
   assert.ok(result);
 });
 
@@ -119,9 +119,9 @@ QUnit.test('shouldChartAttribute returns true for numeric field w/ duration > 0 
     duration: 543
   };
   // integer
-  let result = arcgisChartUtils.field.shouldChartAttribute('esriFieldTypeInteger', stats);
+  let result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeInteger', stats);
   assert.ok(result);
   // double
-  result = arcgisChartUtils.field.shouldChartAttribute('esriFieldTypeDouble', stats);
+  result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeDouble', stats);
   assert.ok(result);
 });

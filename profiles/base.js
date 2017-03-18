@@ -8,7 +8,7 @@ const copyright = `/**
 
 export default {
   entry: 'src/index.js',
-  moduleName: 'arcgisChartUtils',
+  moduleName: 'opendataChartUtils',
   format: 'umd',
   plugins: [buble()],
   banner: copyright

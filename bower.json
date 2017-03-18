@@ -1,7 +1,7 @@
 {
-  "name": "arcgis-chart-utils",
+  "name": "opendata-chart-utils",
   "description": "\"Utility functions that may be useful when developing ArcGIS web apps\"",
-  "main": "dist/arcgis-chart-utils.js",
+  "main": "dist/opendata-chart-utils.js",
   "authors": [
     "Tom Wayson <tom@tomwayson.com>"
   ],
@@ -12,7 +12,7 @@
     "JavaScript",
     "utils"
   ],
-  "homepage": "https://github.com/tomwayson/arcgis-chart-utils",
+  "homepage": "https://github.com/tomwayson/opendata-chart-utils",
   "ignore": [
     "**/.*",
     "node_modules",
