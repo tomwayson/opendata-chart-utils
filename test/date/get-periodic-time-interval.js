@@ -4,6 +4,16 @@ QUnit.module('getPeriodicTimeInterval');
 // the year I didn't get what I wanted for xmas
 var startDate = new Date(1990, 11, 25);
 
+QUnit.test('getPeriodicTimeInterval returns null if start or end is not a date', function (assert) {
+  let result = opendataChartUtils.field.getPeriodicTimeInterval(startDate, 'test');
+  assert.equal(result, null);
+});
+
+QUnit.test('getPeriodicTimeInterval returns null if start date is after end date', function (assert) {
+  let result = opendataChartUtils.field.getPeriodicTimeInterval(startDate, new Date(1989, 11, 25, 0, 0, 0, 500));
+  assert.equal(result, null);
+});
+
 QUnit.test('getPeriodicTimeInterval returns year if > 12 months and <= 25 years', function (assert) {
   let result = opendataChartUtils.field.getPeriodicTimeInterval(startDate, new Date(2005, 11, 25));
   assert.equal(result, 'year');

@@ -1,4 +1,8 @@
-/* global moment */
+import isDate from 'date-fns/is_date';
+import isAfter from 'date-fns/is_after';
+import differenceInSeconds from 'date-fns/difference_in_seconds';
+import differenceInMonths from 'date-fns/difference_in_months';
+
 /**
  * How to get Periodic time intervals
  *
@@ -7,49 +11,39 @@
   * @returns {string} or {null} - Returns type of time interval or null
  */
 export default function getPeriodicTimeInterval (startDate, endDate) {
-   // Make our start / ends be wrapped in moment for comparison logic
-  const start = moment(startDate);
-  const end = moment(endDate);
-
-  if (!shouldCalcDates(startDate, endDate)) { return null; }
-
-  if (calcDiffInDates(end, start, 'year') <= 25 && calcDiffInDates(end, start, 'month') > 12) {
-    return 'year';
-  } else if (calcDiffInDates(end, start, 'month') <= 12 && calcDiffInDates(end, start, 'day') > 31) {
-    return 'month';
-  } else if (calcDiffInDates(end, start, 'day') <= 31 && calcDiffInDates(end, start, 'hour') > 24) {
-    return 'day';
-  } else if (calcDiffInDates(end, start, 'hour') <= 24 && calcDiffInDates(end, start, 'minute') > 30) {
-    return 'hour';
-  } else if (calcDiffInDates(end, start, 'minute') <= 30 && calcDiffInDates(end, start, 'second') > 30) {
-    return 'minute';
-  } else if (calcDiffInDates(end, start, 'second') <= 30 && calcDiffInDates(end, start, 'second') > 1) {
-    return 'second';
-  }
-
-  return null;
-}
-
-// Determine the differences in dates. True is needed to calc as a float.
-function calcDiffInDates (end, start, measureOfTime) {
-  return end.diff(start, measureOfTime, true);
-}
-
-// Should we calc a time interval even?
-function shouldCalcDates (start, end) {
   // if either date is invalid return null
-  if (!validDate(start) || !validDate(end)) { return null; }
+  if (!isDate(startDate) || !isDate(endDate)) {
+    return null;
+  }
   // if the start date is after the end date return null
-  if (!startDateAfterEndDate(start, end)) { return null; }
-  return true;
-}
-
-// Is the date valid? new Date() because moment doesn't recognize datetime objects otherwise
-function validDate (date) {
-  return moment.isDate(new Date(date));
-}
-
-// Is the start date after the end date?
-function startDateAfterEndDate (start, end) {
-  return moment(start).isBefore(end);
+  if (isAfter(startDate, endDate)) {
+    return null;
+  }
+  const minute = 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+  const year = 12;
+  const seconds = differenceInSeconds(endDate, startDate);
+  console.log('seconds', seconds);
+  if (seconds <= 1) {
+    return null;
+  }
+  if (seconds <= 30) {
+    return 'second';
+  } else if (seconds <= (30 * minute)) {
+    return 'minute';
+  } else if (seconds <= (24 * hour)) {
+    return 'hour';
+  } else if (seconds <= (29 * day)) {
+    return 'day';
+  } else {
+    const months = differenceInMonths(endDate, startDate);
+    if (months <= 12) {
+      return 'month';
+    } else if (months <= (25 * year)) {
+      return 'year';
+    } else {
+      return null;
+    }
+  }
 }
