@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "build": "rollup -c profiles/dev.js",
+    "build:release": "rollup -c profiles/dev.js && rollup -c profiles/prod.js",
     "test": "karma start",
     "start": "npm run build && concurrently \"watch 'npm run build' src\" \"karma start\""
   },
@@ -11,7 +12,10 @@
   "repository": "https://github.com/tomwayson/opendata-chart-utils.git",
   "author": "Tom Wayson <tom@tomwayson.com>",
   "license": "Apache-2.0",
-  "dependencies": {},
+  "dependencies": {
+    "rollup-plugin-filesize": "^1.2.1",
+    "rollup-plugin-uglify": "^1.0.1"
+  },
   "devDependencies": {
     "concurrently": "^3.4.0",
     "karma": "^1.5.0",
