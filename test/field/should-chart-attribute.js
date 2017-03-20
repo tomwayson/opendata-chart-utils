@@ -125,3 +125,32 @@ QUnit.test('shouldChartAttribute returns true for numeric field w/ duration > 0 
   result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeDouble', stats);
   assert.ok(result);
 });
+
+QUnit.test('shouldChartAttribute returns false for numeric field w/ min and max 0', function (assert) {
+  const stats = {
+    count: 1234,
+    duration: 543,
+    min: 0,
+    max: 0
+  };
+  // integer
+  let result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeInteger', stats);
+  assert.notOk(result);
+});
+
+QUnit.test('shouldChartAttribute returns true when either min/max is non-zero', function (assert) {
+  const stats = {
+    count: 1234,
+    duration: 543,
+    min: 0,
+    max: 123456
+  };
+  // integer
+  let result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeInteger', stats);
+  assert.ok(result);
+  stats.max = 0;
+  stats.min = -12345;
+  // double
+  result = opendataChartUtils.field.shouldChartAttribute('esriFieldTypeDouble', stats);
+  assert.ok(result);
+});

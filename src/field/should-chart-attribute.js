@@ -30,7 +30,7 @@ export default function shouldChartAttribute (fieldType, stats, options) {
     durationBool: stats.duration > 0,
     countBool: stats.count <= internalOptions.maxCount,
     notEmptyBool: stats.count > 0,
-    notAllEmptyVals: stats.max !== 0 && stats.min !== 0,
+    allEmptyVals: stats.max === 0 && stats.min === 0,
     sqlExpressionBool: !!internalOptions.advancedQueryCapabilities && internalOptions.advancedQueryCapabilities.supportsSqlExpression,
     maxRecordCountBool: recordCountBool(internalOptions.recordCount, internalOptions.maxRecordCount),
     timeIntervalBool: !!getPeriodicTimeInterval(stats.min, stats.max)
@@ -44,7 +44,7 @@ export default function shouldChartAttribute (fieldType, stats, options) {
 function evaluatedHeuristics (heuristics) {
   if (isNumericType(heuristics.fieldType)) {
     // If numeric check that duration is greater than 0 and count is greater than 0
-    return heuristics.durationBool && heuristics.notEmptyBool && heuristics.notAllEmptyVals;
+    return heuristics.durationBool && heuristics.notEmptyBool && !heuristics.allEmptyVals;
   } else if (heuristics.fieldType === 'esriFieldTypeString') {
     // If string check that duration is greater than 0 and count is greater than 0
     // and that count is less than or equal to maxCount
