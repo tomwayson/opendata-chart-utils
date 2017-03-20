@@ -1,10 +1,12 @@
 language: node_js
 node_js:
 - 6.3.0
+install:
+  - yarn
+  - bower install
 script:
   - npm test
 branches:
   except:
     -gh-release
     -gh-pages
-    
