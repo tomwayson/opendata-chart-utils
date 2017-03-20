@@ -2,7 +2,7 @@
 // Generated on Wed Mar 08 2017 13:05:58 GMT-0800 (PST)
 
 module.exports = function(config) {
-  config.set({
+  var configuration = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
@@ -15,7 +15,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      // polyfill needed for Object.assign
+      { pattern: 'node_modules/babel-polyfill/dist/polyfill.js', watched: false },
+      // moment is an external dependency
       { pattern: 'bower_components/moment/min/moment.min.js', watched: false },
+      // for now testing on the build output, will re-run tests after build runs
       'dist/opendata-chart-utils.js',
       'test/**/*.js'
     ],
@@ -29,8 +33,23 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      // tests are in ES6, so need to transpile first
+      'test/**/*.js': ['babel']
     },
 
+    // NOTE: babel is only used on test files, so these options only apply to tests
+    babelPreprocessor: {
+      options: {
+        presets: ['es2015'],
+        sourceMap: 'inline'
+      },
+      filename: function (file) {
+        return file.originalPath.replace(/\.js$/, '.es5.js');
+      },
+      sourceFileName: function (file) {
+        return file.originalPath;
+      }
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -57,7 +76,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
@@ -67,5 +86,12 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  })
-}
+  };
+
+  // test in chrome too locally
+  if (!process.env.TRAVIS) {
+    configuration.browsers.push('Chrome');
+  }
+
+  config.set(configuration);
+};
